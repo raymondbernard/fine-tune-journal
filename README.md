@@ -1,4 +1,4 @@
-# finedtunejournal
+# fine-tune journal
 
 ## Repository Description
 
