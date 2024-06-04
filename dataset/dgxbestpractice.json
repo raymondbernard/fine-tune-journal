@@ -1,0 +1,1723 @@
+[
+    {
+        "instruction": "Provide the command to monitor the RAID array status in a DGX system.",
+        "input": "How do I check the status of the RAID array on my DGX system?",
+        "output":"cat /proc/mdstat"
+    },
+    {
+        "instruction": "Offer the command for checking detailed information about the RAID array in a DGX system.",
+        "input": "Can you show me how to get detailed information about the RAID configuration on my DGX?",
+        "output":"mdadm --detail /dev/md0"
+    },
+    {
+        "instruction": "Supply the command to query a RAID device within a RAID group in a DGX system.",
+        "input": "What is the command to query a RAID device in the RAID group of a DGX?",
+        "output":"mdadm --query /dev/sdc"
+    },
+    {
+        "instruction": "List the command to examine a RAID device on a DGX system.",
+        "input": "How can I examine a RAID device on a DGX system?",
+        "output":"mdadm --examine /dev/sdc"
+    },
+    {
+        "instruction": "Describe how to check for NFS performance issues on a DGX system.",
+        "input": "What is the method to troubleshoot NFS performance issues on DGX?",
+        "output":"cat /proc/net/rpc/nfsd"
+    },
+    {
+        "instruction": "Explain how to adjust NFS performance by modifying TCP buffer sizes.",
+        "input": "How do I improve NFS performance by adjusting TCP buffer sizes?",
+        "output":"sysctl -w net.ipv4.tcp_rmem='4096 87380 33554432'"
+    },
+    {
+        "instruction": "Show how to monitor real-time GPU stats on a specific DGX using nvidia-smi.",
+        "input": "What is the command to monitor real-time GPU stats on a DGX?",
+        "output":"watch -n 1 nvidia-smi"
+    },
+    {
+        "instruction": "Provide the command to add a user to the DGX system.",
+        "input": "How do I add a new user to my DGX system?",
+        "output": "useradd -m -s /bin/bash dgxuser"
+    },
+    {
+        "instruction": "Detail how to give a user access to Docker in DGX.",
+        "input": "How can I allow a user to access Docker on the DGX?",
+        "output": "sudo usermod -aG docker dgxuser"
+    },
+    {
+        "instruction": "Illustrate how to setup NFS over 10Gb/s Ethernet on a DGX system.",
+        "input": "What steps are involved in setting up NFS over 10Gb/s Ethernet for DGX?",
+        "output":"nfs setup documentation reference and system configuration steps"
+    },
+    {
+        "instruction": "Provide the command to monitor the health of GPUs using NVIDIA's DCGM tool.",
+        "input": "How do I monitor the health of GPUs in a DGX system?",
+        "output":"dcgmi diag -r 3"
+    },
+    {
+        "instruction": "Explain how to use ctop for monitoring container performance on a DGX system.",
+        "input": "What command do I use to monitor container performance with ctop on a DGX?",
+        "output":"ctop"
+    },
+    {
+        "instruction": "List the command to configure a static IP for network bonding on a DGX system.",
+        "input": "How do I configure a static IP for bonded network interfaces on a DGX?",
+        "output": "Edit /etc/network/interfaces to configure a static IP for the bonded interfaces."
+    },
+    {
+        "instruction": "Provide the command to check the configuration and status of InfiniBand networking in a DGX system.",
+        "input": "How can I check the InfiniBand network configuration and status on a DGX?",
+        "output":"ibstat"
+    },
+    {
+        "instruction": "Show how to configure SLURM for GPU resource management on DGX.",
+        "input": "What steps are required to configure SLURM for managing GPU resources on DGX?",
+        "output": "Refer to the SLURM configuration file modifications and GPU resource scheduling settings in slurm.conf."
+    },
+    {
+        "instruction": "Detail the command to run an SSH tunneling session for Jupyter notebooks on a DGX system.",
+        "input": "How do I set up SSH tunneling for Jupyter notebooks on DGX?",
+        "output": "Use PuTTY or similar SSH client with the -L option specifying the local and remote ports."
+    },
+    {
+        "instruction": "Provide the command to synchronize time using systemd on a DGX system running Ubuntu.",
+        "input": "What is the command to synchronize time on a DGX system using systemd?",
+        "output": "timedatectl set-ntp true"
+    },
+    {
+        "instruction": "Explain how to create and manage users on a DGX system.",
+        "input": "How do I manage user creation on a DGX system?",
+        "output": "Use useradd for creating users and usermod for modifying user group memberships."
+    },
+    {
+        "instruction": "Describe how to configure VLANs on DGX using the network interfaces file.",
+        "input": "What is the procedure to configure VLANs on a DGX system?",
+        "output": "Modify the /etc/network/interfaces file to include VLAN settings using the iface and vlan-raw-device options."
+    },
+    {
+        "instruction": "Provide steps for checking the software RAID configuration on a DGX system.",
+        "input": "How do I check the software RAID configuration on a DGX system?",
+        "output":"mdadm --detail --scan"
+    },{
+        "instruction": "Explain how to check for software updates on a DGX system.",
+        "input": "How do I check for software updates on my DGX?",
+        "output":"apt update && apt list --upgradable"
+    },
+    {
+        "instruction": "Describe the process to update the GPU drivers on a DGX system.",
+        "input": "How do I update the GPU drivers on a DGX system?",
+        "output": "Download the latest drivers from NVIDIA's website and use the installer provided."
+    },
+    {
+        "instruction": "Show the command to view the current GPU utilization and temperature on a DGX system.",
+        "input": "How can I view the current GPU utilization and temperatures on my DGX system?",
+        "output":"nvidia-smi"
+    },
+    {
+        "instruction": "List the steps to configure a virtual network on a DGX system for KVM virtual machines.",
+        "input": "How do I configure a virtual network for KVM virtual machines on a DGX system?",
+        "output": "Use virsh or virt-manager to create and configure the virtual network settings."
+    },
+    {
+        "instruction": "Provide the command to backup the system configuration of a DGX system.",
+        "input": "How do I backup the system configuration of my DGX?",
+        "output":"tar -cvzf /backup/dgx-system-backup.tar.gz /etc/"
+    },
+    {
+        "instruction": "Explain how to restore the DGX system from a backup file.",
+        "input": "What is the process to restore a DGX system from a backup?",
+        "output":"tar -xvzf /backup/dgx-system-backup.tar.gz -C /"
+    },
+    {
+        "instruction": "Show how to monitor network traffic on a DGX system.",
+        "input": "What command should I use to monitor network traffic on a DGX system?",
+        "output":"iftop or nload"
+    },
+    {
+        "instruction": "Describe how to secure a DGX system against unauthorized access.",
+        "input": "How do I secure my DGX system against unauthorized access?",
+        "output": "Implement firewall rules, use SSH keys for authentication, and regularly update system patches."
+    },
+    {
+        "instruction": "Provide the command to install a new software package on a DGX system.",
+        "input": "How do I install a new software package on my DGX?",
+        "output":"apt install <package_name>"
+    },
+    {
+        "instruction": "Explain how to manage power settings on a DGX system.",
+        "input": "What steps should I take to manage power settings on a DGX system?",
+        "output": "Use the 'nvidia-smi -pl <power_limit>' to set the power limit for GPUs or adjust BIOS settings for overall power management."
+    },  {
+        "instruction": "Provide the command to list all running Docker containers on a DGX system.",
+        "input": "How can I list all running Docker containers on my DGX system?",
+        "output": "docker ps"
+    },
+    {
+        "instruction": "Describe how to increase storage space available to a DGX system.",
+        "input": "What should I do to increase the storage space available on my DGX system?",
+        "output": "Add additional drives if hardware permits, or connect to external NAS or SAN storage."
+    },
+    {
+        "instruction": "Show how to configure email alerts for system events on a DGX system.",
+        "input": "How do I configure email alerts for system events on a DGX?",
+        "output": "Configure the system's monitoring tools like Monit or Nagios to send email notifications for specified events."
+    },
+    {
+        "instruction": "List the command to update the firmware on a DGX system.",
+        "input": "What is the command to update firmware on a DGX system?",
+        "output": "Use the NVIDIA firmware update tool specific for DGX, typically accessed via the OEM support page."
+    },
+    {
+        "instruction": "Provide the command to check the disk health on a DGX system.",
+        "input": "How can I check the disk health on my DGX system?",
+        "output": "smartctl -a /dev/sda"
+    },
+    {
+        "instruction": "Explain how to configure network bonding on a DGX system.",
+        "input": "What steps are needed to configure network bonding on a DGX system?",
+        "output": "Edit /etc/network/interfaces to configure bonding settings, specifying the bonded interfaces and their options."
+    },
+    {
+        "instruction": "Show how to perform a network speed test on a DGX system.",
+        "input": "How do I perform a network speed test on my DGX system?",
+        "output": "iperf3 -s on server side and iperf3 -c <server_ip> on client side"
+    },
+    {
+        "instruction": "Describe how to manage software licenses on a DGX system.",
+        "input": "How do I manage software licenses on a DGX system?",
+        "output": "Use a license management tool such as FlexLM to serve and manage licenses, and configure clients to request licenses from the server."
+    },
+    {
+        "instruction": "Provide the command to monitor CPU and memory usage in real-time on a DGX system.",
+        "input": "What command should I use to monitor CPU and memory usage in real-time on a DGX?",
+        "output": "top or htop"
+    },
+    {
+        "instruction": "Explain how to manually start a scheduled job on a DGX system.",
+        "input": "How do I manually start a scheduled job on a DGX system?",
+        "output": "Use the 'crontab -e' to edit cron jobs and manually adjust the schedule or trigger a job with the 'at' command for one-time tasks."
+    }, {
+        "instruction": "Provide the command to restart a specific service on a DGX system.",
+        "input": "How do I restart a service on my DGX system?",
+        "output": "systemctl restart servicename"
+    },
+    {
+        "instruction": "Describe how to access BIOS settings on a DGX system during boot.",
+        "input": "How can I access the BIOS settings on my DGX during boot?",
+        "output": "Reboot the system and press the appropriate key (often Del or F2) during the boot process to enter BIOS settings."
+    },
+    {
+        "instruction": "Show how to change the system hostname on a DGX system.",
+        "input": "What steps should I follow to change the hostname on my DGX system?",
+        "output": "Edit the /etc/hostname file and use the 'hostname' command to change the system's hostname."
+    },
+    {
+        "instruction": "List the command to add a static route on a DGX system.",
+        "input": "How do I add a static route to my DGX system?",
+        "output": "ip route add 192.168.1.0/24 via 192.168.0.1 dev eth0"
+    },
+    {
+        "instruction": "Provide the command to check the system's uptime on a DGX system.",
+        "input": "How can I check the uptime of my DGX system?",
+        "output": "uptime"
+    },
+    {
+        "instruction": "Explain how to manually install a security patch on a DGX system.",
+        "input": "What is the process to manually install a security patch on my DGX system?",
+        "output": "Download the patch from the official vendor site, verify its integrity, and use 'dpkg -i package_name.deb' to install."
+    },
+    {
+        "instruction": "Show how to list all installed packages on a DGX system.",
+        "input": "How do I list all installed packages on my DGX system?",
+        "output": "dpkg -l"
+    },
+    {
+        "instruction": "Describe how to check for open ports on a DGX system.",
+        "input": "What command should I use to check for open ports on my DGX system?",
+        "output": "netstat -tuln"
+    },    {
+        "instruction": "Explain how to create a new user account with administrative privileges on a DGX system.",
+        "input": "How do I create a new user account with administrative privileges on my DGX?",
+        "output": "useradd -m newuser && passwd newuser && usermod -aG sudo newuser"
+    }, {
+        "instruction": "Provide the command to see all active network interfaces on a DGX system.",
+        "input": "How can I see all active network interfaces on my DGX system?",
+        "output": "ip a"
+    },
+    {
+        "instruction": "Describe how to configure a firewall on a DGX system.",
+        "input": "How do I configure a firewall on my DGX system?",
+        "output": "Use 'ufw' to manage the firewall rules. Enable the firewall with 'ufw enable' and add rules with 'ufw allow' or 'ufw deny'."
+    },
+    {
+        "instruction": "Show how to check the memory usage on a DGX system.",
+        "input": "What command should I use to check the memory usage on my DGX system?",
+        "output": "free -m"
+    },
+    {
+        "instruction": "List the command to find the version of the operating system installed on a DGX system.",
+        "input": "How can I find out which version of the operating system is installed on my DGX?",
+        "output": "lsb_release -a"
+    },
+    {
+        "instruction": "Provide the command to monitor disk I/O on a DGX system.",
+        "input": "How do I monitor disk I/O on my DGX system?",
+        "output": "iotop"
+    },
+    {
+        "instruction": "Explain how to change network settings on a DGX system.",
+        "input": "What steps should I follow to change network settings on my DGX system?",
+        "output": "Edit /etc/network/interfaces or use 'nmcli' for network settings. Restart the networking service with 'systemctl restart networking' for changes to take effect."
+    },
+    {
+        "instruction": "Show how to set a static IP address on a DGX system.",
+        "input": "How do I set a static IP address on my DGX system?",
+        "output": "Edit /etc/network/interfaces to configure your desired static IP, subnet mask, gateway, and DNS servers."
+    },
+    {
+        "instruction": "Describe how to log system events on a DGX system.",
+        "input": "How do I log system events on my DGX system?",
+        "output": "Configure 'rsyslog' or 'syslog-ng' to manage system logs. Set up log rotation with 'logrotate' to manage log file sizes."
+    },
+    {
+        "instruction": "Provide the command to find hardware information, like CPU and GPU details, on a DGX system.",
+        "input": "How can I find detailed hardware information on my DGX?",
+        "output": "lshw -short"
+    },
+    {
+        "instruction": "Explain how to configure an NTP server on a DGX system.",
+        "input": "How do I configure an NTP server on my DGX system?",
+        "output": "Edit the /etc/ntp.conf file to specify the NTP server details. Restart the NTP service with 'systemctl restart ntp'."
+    },{
+        "instruction": "Provide the command to list the installed GPU drivers on a DGX system.",
+        "input": "How do I list the installed GPU drivers on my DGX system?",
+        "output": "nvidia-smi"
+    },
+    {
+        "instruction": "Describe how to change the default shell for a user on a DGX system.",
+        "input": "How do I change the default shell for a user on my DGX system?",
+        "output": "Use the 'chsh -s /path/to/shell username' command to change the default shell for a user."
+    },
+    {
+        "instruction": "Show how to check network latency on a DGX system.",
+        "input": "How can I check network latency on my DGX system?",
+        "output": "ping <destination_ip>"
+    },
+    {
+        "instruction": "List the command to verify the integrity of a filesystem on a DGX system.",
+        "input": "What command should I use to verify the integrity of a filesystem on my DGX?",
+        "output": "fsck /dev/sda1"
+    },
+    {
+        "instruction": "Provide the command to view detailed system logs on a DGX system.",
+        "input": "How do I view detailed system logs on my DGX system?",
+        "output": "journalctl -xe"
+    },
+    {
+        "instruction": "Explain how to secure SSH access on a DGX system.",
+        "input": "What steps should I take to secure SSH access on my DGX system?",
+        "output": "Edit the /etc/ssh/sshd_config file to disable root login, change the default port, and use key-based authentication. Restart SSH service with 'systemctl restart sshd'."
+    },
+    {
+        "instruction": "Show how to create a backup of the /etc directory on a DGX system.",
+        "input": "How do I create a backup of the /etc directory on my DGX system?",
+        "output": "tar -czvf etc-backup.tar.gz /etc"
+    },
+    {
+        "instruction": "Describe how to restore the system state from a snapshot on a DGX system.",
+        "input": "How do I restore the system state from a snapshot on my DGX?",
+        "output": "Use 'snapper rollback' if using Btrfs, or restore from the snapshot file if using other tools like Timeshift."
+    },
+    {
+        "instruction": "Provide the command to monitor real-time GPU clock speeds on a DGX system.",
+        "input": "What command shows real-time GPU clock speeds on my DGX?",
+        "output": "nvidia-smi -q -d CLOCK"
+    },
+    {
+        "instruction": "Explain how to upgrade the BIOS on a DGX system.",
+        "input": "How do I upgrade the BIOS on my DGX system?",
+        "output": "Download the BIOS update from the manufacturer's website, create a bootable USB drive with the firmware, reboot the system, and follow the on-screen instructions to update the BIOS."
+    },{
+        "instruction": "Provide the command to find all running processes by a specific user on a DGX system.",
+        "input": "How can I find all running processes by a specific user on my DGX system?",
+        "output": "ps -u username"
+    },
+    {
+        "instruction": "Describe how to disable a service from starting at boot on a DGX system.",
+        "input": "How do I disable a service from starting at boot on my DGX system?",
+        "output": "Use 'systemctl disable servicename' to prevent the service from starting at boot."
+    },
+    {
+        "instruction": "Show how to change the system's timezone on a DGX system.",
+        "input": "How do I change the system's timezone on my DGX system?",
+        "output": "Use 'timedatectl set-timezone America/New_York' to change the system's timezone."
+    },
+    {
+        "instruction": "List the command to determine the total number of hard disk drives in a DGX system.",
+        "input": "How can I determine the total number of hard disk drives in my DGX system?",
+        "output": "lsblk -d | grep disk"
+    },
+    {
+        "instruction": "Provide the command to check the temperature of all GPUs on a DGX system.",
+        "input": "How do I check the temperature of all GPUs on my DGX system?",
+        "output": "nvidia-smi --query-gpu=temperature.gpu --format=csv"
+    },
+    {
+        "instruction": "Explain how to increase the swap space on a DGX system.",
+        "input": "What steps should I take to increase the swap space on my DGX system?",
+        "output": "Create a new swap file with 'dd if=/dev/zero of=/swapfile bs=1G count=10', format it with 'mkswap /swapfile', then enable it with 'swapon /swapfile'. Add the entry to '/etc/fstab' for permanence."
+    },
+    {
+        "instruction": "Show how to compress files in a directory on a DGX system using tar.",
+        "input": "How do I compress files in a directory on my DGX system?",
+        "output": "tar -czvf archive-name.tar.gz /path/to/directory"
+    },
+    {
+        "instruction": "Describe how to decompress a .tar.gz file on a DGX system.",
+        "input": "How do I decompress a .tar.gz file on my DGX system?",
+        "output": "tar -xzvf file-name.tar.gz"
+    },
+    {
+        "instruction": "Provide the command to view the last 100 lines of a log file on a DGX system.",
+        "input": "What command can I use to view the last 100 lines of a log file on my DGX?",
+        "output": "tail -n 100 /path/to/logfile"
+    },
+    {
+        "instruction": "Explain how to add a user to a specific group on a DGX system.",
+        "input": "How do I add a user to a specific group on my DGX system?",
+        "output": "usermod -a -G groupname username"
+    }, {
+        "instruction": "Provide the command to list all installed kernel versions on a DGX system.",
+        "input": "How can I list all installed kernel versions on my DGX system?",
+        "output": "dpkg --list | grep linux-image"
+    },
+    {
+        "instruction": "Describe how to remove old kernels to free up space on a DGX system.",
+        "input": "How do I remove old kernels to free up space on my DGX system?",
+        "output": "Use 'apt autoremove' to remove old kernels or manually remove them with 'apt remove kernel_package_name'."
+    },
+    {
+        "instruction": "Show how to find out which process is using a specific port on a DGX system.",
+        "input": "How can I find out which process is using a specific port on my DGX system?",
+        "output": "netstat -tulnp | grep :port_number"
+    },
+    {
+        "instruction": "List the command to update the network driver on a DGX system.",
+        "input": "How do I update the network driver on my DGX system?",
+        "output": "Download the latest network driver from the manufacturer's website and follow their installation instructions."
+    },
+    {
+        "instruction": "Provide the command to monitor the status of the RAID array during rebuild on a DGX system.",
+        "input": "How do I monitor the status of the RAID array during rebuild on my DGX?",
+        "output": "cat /proc/mdstat"
+    },
+    {
+        "instruction": "Explain how to manually force a filesystem check on the next reboot of a DGX system.",
+        "input": "What steps should I take to force a filesystem check on the next reboot of my DGX system?",
+        "output": "Use 'tune2fs -C max-mount-counts /dev/sdX' to set the number of mounts after which the filesystem will be checked."
+    },
+    {
+        "instruction": "Show how to reset the network configurations to default on a DGX system.",
+        "input": "How can I reset network configurations to default on my DGX system?",
+        "output": "Remove custom configurations from '/etc/network/interfaces' or other network management files and restart the network service with 'systemctl restart networking'."
+    },
+    {
+        "instruction": "Describe how to manually sync the time with an NTP server on a DGX system.",
+        "input": "How do I manually sync time with an NTP server on my DGX?",
+        "output": "timedatectl set-ntp false && ntpdate -u ntp_server_address && timedatectl set-ntp true"
+    },
+    {
+        "instruction": "Provide the command to list all network listening ports on a DGX system.",
+        "input": "What command shows all network listening ports on my DGX?",
+        "output": "netstat -tuln"
+    },
+    {
+        "instruction": "Explain how to create an encrypted backup of the home directory on a DGX system.",
+        "input": "How do I create an encrypted backup of the home directory on my DGX system?",
+        "output": "Use 'tar -czf - /home/username | openssl enc -aes-256-cbc -e > home_encrypted.tar.gz' to create an encrypted backup."
+    },{
+        "instruction": "Provide the command to check the health of the network interfaces on a DGX system.",
+        "input": "How do I check the health of network interfaces on my DGX system?",
+        "output": "ethtool interface_name"
+    },
+    {
+        "instruction": "Describe how to configure static DNS settings on a DGX system.",
+        "input": "How do I configure static DNS settings on my DGX system?",
+        "output": "Edit '/etc/resolv.conf' to add 'nameserver dns_ip_address' for each DNS server. Make sure changes persist through reboots by managing DHCP client or network manager settings."
+    },
+    {
+        "instruction": "Show how to monitor system resource usage over time on a DGX system.",
+        "input": "How can I monitor system resource usage over time on my DGX?",
+        "output": "Use the 'dstat' tool for real-time monitoring and logging system resource usage. Use 'dstat -ta --output /path/to/logfile.csv' for continuous logging."
+    },
+    {
+        "instruction": "List the command to restore a user's home directory from a backup on a DGX system.",
+        "input": "What command should I use to restore a user's home directory from a backup on my DGX?",
+        "output": "tar -xzvf home_backup.tar.gz -C /home/username"
+    },
+    {
+        "instruction": "Provide the command to view active SSH sessions on a DGX system.",
+        "input": "How do I view active SSH sessions on my DGX system?",
+        "output": "who"
+    },
+    {
+        "instruction": "Explain how to change the priority of a running process on a DGX system.",
+        "input": "What steps should I take to change the priority of a running process on my DGX?",
+        "output": "Use 'renice -n new_priority -p process_id' to change the priority of a process. Use 'top' or 'ps' to find the process ID."
+    },
+    {
+        "instruction": "Show how to enable HTTPS for web services running on a DGX system.",
+        "input": "How can I enable HTTPS for web services on my DGX system?",
+        "output": "Install and configure an SSL/TLS certificate using Let's Encrypt with 'certbot' or manually configure your web server (e.g., Apache, Nginx) to use an SSL certificate."
+    },
+    {
+        "instruction": "Describe how to block a specific IP address from accessing the DGX system.",
+        "input": "How do I block a specific IP address from accessing my DGX system?",
+        "output": "Use 'iptables -A INPUT -s ip_address -j DROP' to block incoming traffic from a specific IP address."
+    },
+    {
+        "instruction": "Provide the command to determine the amount of RAM installed on a DGX system.",
+        "input": "How can I find out the amount of RAM installed on my DGX?",
+        "output": "dmidecode -t memory | grep -i size"
+    },
+    {
+        "instruction": "Explain how to manually update the graphics card firmware on a DGX system.",
+        "input": "How do I manually update the graphics card firmware on my DGX system?",
+        "output": "Download the latest firmware from NVIDIA's official website, then use 'nvidia-smi -i gpu_index --fwupdate firmware_filename' to apply the firmware update."
+    },  {
+        "instruction": "Provide the command to list all active IP connections on a DGX system.",
+        "input": "How do I list all active IP connections on my DGX system?",
+        "output": "ss -tunap"
+    },
+    {
+        "instruction": "Describe how to manage virtual memory settings on a DGX system.",
+        "input": "How do I manage virtual memory settings on my DGX system?",
+        "output": "Edit the '/etc/sysctl.conf' file to modify parameters like vm.swappiness and vm.vfs_cache_pressure based on your requirements. Apply changes with 'sysctl -p'."
+    },
+    {
+        "instruction": "Show how to kill a non-responsive process on a DGX system.",
+        "input": "How can I kill a non-responsive process on my DGX system?",
+        "output": "Use 'kill -9 process_id' to forcefully terminate a process. Find the process ID using 'top' or 'ps'."
+    },
+    {
+        "instruction": "List the command to find the uptime of individual services on a DGX system.",
+        "input": "What command should I use to find the uptime of individual services on my DGX?",
+        "output": "systemctl status service_name | grep Active"
+    },
+    {
+        "instruction": "Provide the command to adjust the fan speed of GPUs on a DGX system.",
+        "input": "How do I adjust the fan speed of GPUs on my DGX system?",
+        "output": "nvidia-settings -a [gpu:0]/GPUFanControlState=1 -a [fan:0]/GPUTargetFanSpeed=80"
+    },
+    {
+        "instruction": "Explain how to configure a network bridge on a DGX system.",
+        "input": "What steps should I take to configure a network bridge on my DGX system?",
+        "output": "Edit '/etc/network/interfaces' to define the bridge and associated interfaces. Install the 'bridge-utils' package and use 'brctl' to manage bridge settings."
+    },
+    {
+        "instruction": "Show how to compress and encrypt a directory on a DGX system using tar and gpg.",
+        "input": "How can I compress and encrypt a directory on my DGX system?",
+        "output": "tar -cz directory_name | gpg --cipher-algo AES256 -c > encrypted.tar.gz.gpg"
+    },
+    {
+        "instruction": "Describe how to check for memory leaks in applications running on a DGX system.",
+        "input": "How do I check for memory leaks in applications on my DGX system?",
+        "output": "Use tools like 'valgrind --leak-check=yes application_name' to identify memory leaks in applications."
+    },
+    {
+        "instruction": "Provide the command to view the hardware configuration and serial numbers of all devices on a DGX system.",
+        "input": "How can I view the hardware configuration and serial numbers of all devices on my DGX?",
+        "output": "lshw -serial"
+    },
+    {
+        "instruction": "Explain how to restore a DGX system to factory settings.",
+        "input": "How do I restore my DGX system to factory settings?",
+        "output": "Reinstall the OS using the original media or recovery partition provided by the manufacturer, ensuring all data is backed up as this process will erase existing data."
+    },{
+        "instruction": "Provide the command to list all USB devices connected to a DGX system.",
+        "input": "How can I list all USB devices connected to my DGX system?",
+        "output": "lsusb"
+    },
+    {
+        "instruction": "Describe how to change file permissions recursively on a DGX system.",
+        "input": "How do I change file permissions recursively on my DGX system?",
+        "output": "Use 'chmod -R mode /path/to/directory' to change permissions recursively. Replace 'mode' with the desired permission settings."
+    },
+    {
+        "instruction": "Show how to check disk usage by directory on a DGX system.",
+        "input": "How can I check disk usage by directory on my DGX system?",
+        "output": "du -sh /path/to/directory/*"
+    },
+    {
+        "instruction": "List the command to verify the network speed and duplex settings on a DGX system.",
+        "input": "What command should I use to verify the network speed and duplex settings on my DGX?",
+        "output": "ethtool eth0 | grep 'Speed\\|Duplex'"
+    },
+    {
+        "instruction": "Provide the command to see the routing table on a DGX system.",
+        "input": "How do I see the routing table on my DGX system?",
+        "output": "route -n"
+    },
+    {
+        "instruction": "Explain how to manually configure IPv6 settings on a DGX system.",
+        "input": "What steps should I take to configure IPv6 settings on my DGX system?",
+        "output": "Edit '/etc/sysctl.conf' to enable IPv6. Configure '/etc/network/interfaces' with IPv6 addresses, gateways, and DNS. Reload the settings with 'sysctl -p' and restart the network service."
+    },
+    {
+        "instruction": "Show how to view all scheduled cron jobs for all users on a DGX system.",
+        "input": "How can I view all scheduled cron jobs for all users on my DGX?",
+        "output": "for user in $(cut -f1 -d: /etc/passwd); do echo $user; crontab -u $user -l; done"
+    },
+    {
+        "instruction": "Describe how to add a firewall rule to allow traffic from a specific subnet on a DGX system.",
+        "input": "How do I add a firewall rule to allow traffic from a specific subnet on my DGX system?",
+        "output": "Use 'iptables -A INPUT -s subnet_address/mask -j ACCEPT' where 'subnet_address/mask' is the CIDR notation of the subnet."
+    },
+    {
+        "instruction": "Provide the command to trace the path packets take to a network host on a DGX system.",
+        "input": "What command shows the path packets take to a network host on my DGX?",
+        "output": "traceroute hostname"
+    },
+    {
+        "instruction": "Explain how to set up a VPN on a DGX system.",
+        "input": "How do I set up a VPN on my DGX system?",
+        "output": "Install and configure a VPN client software such as 'openvpn'. Load the VPN configuration file provided by your VPN provider and connect using 'openvpn --config file_name.ovpn'."
+    },   {
+        "instruction": "Provide the command to list all network interfaces and their statuses on a DGX system.",
+        "input": "How do I list all network interfaces and their statuses on my DGX system?",
+        "output": "ip link show"
+    },
+    {
+        "instruction": "Describe how to recover a deleted file from a backup on a DGX system.",
+        "input": "How do I recover a deleted file from a backup on my DGX system?",
+        "output": "Locate the backup file containing the deleted item, then use 'tar -xzf backup-file.tar.gz -C /recovery_directory path/to/file' to extract the specific file to a designated recovery directory."
+    },
+    {
+        "instruction": "Show how to update all device drivers on a DGX system.",
+        "input": "What is the procedure to update all device drivers on my DGX system?",
+        "output": "Use 'ubuntu-drivers autoinstall' to automatically install available updates for all device drivers. Reboot the system after installation to apply changes."
+    },
+    {
+        "instruction": "List the command to check the status of the firewall on a DGX system.",
+        "input": "How can I check the status of the firewall on my DGX system?",
+        "output": "ufw status verbose"
+    },
+    {
+        "instruction": "Provide the command to monitor live system performance using an interactive tool on a DGX system.",
+        "input": "How do I monitor live system performance interactively on my DGX system?",
+        "output": "htop"
+    },
+    {
+        "instruction": "Explain how to secure file transfers to and from a DGX system.",
+        "input": "What steps should I take to secure file transfers to and from my DGX system?",
+        "output": "Use 'scp' for secure file transfer via SSH. Ensure both the source and destination machines have SSH configured and running."
+    },
+    {
+        "instruction": "Show how to check the warranty status of a DGX system.",
+        "input": "How can I check the warranty status of my DGX system?",
+        "output": "Visit the manufacturer's support website, enter the serial number of your DGX system, and review the warranty details provided online."
+    },
+    {
+        "instruction": "Describe how to manually configure a new hard drive on a DGX system.",
+        "input": "How do I manually configure a new hard drive on my DGX system?",
+        "output": "Use 'fdisk' to partition the drive, 'mkfs' to format the partition, and 'mount' to add it to the file system. Update '/etc/fstab' for automatic mounting at boot."
+    },
+    {
+        "instruction": "Provide the command to list all processes started by the root user on a DGX system.",
+        "input": "What command shows all processes started by the root user on my DGX?",
+        "output": "ps -u root"
+    },
+    {
+        "instruction": "Explain how to change the default login shell for all new users on a DGX system.",
+        "input": "How do I change the default login shell for all new users on my DGX system?",
+        "output": "Edit '/etc/default/useradd' and set the SHELL variable to the desired shell path, such as '/bin/zsh' for Z shell as the default for new users."
+    }, {
+        "instruction": "Provide the command to view the detailed list of all partitions on a DGX system.",
+        "input": "How can I view a detailed list of all partitions on my DGX system?",
+        "output": "lsblk -o NAME,SIZE,FSTYPE,LABEL,MOUNTPOINT"
+    },
+    {
+        "instruction": "Describe how to configure email alerts for system monitoring on a DGX system.",
+        "input": "What steps should I take to configure email alerts for system monitoring on my DGX system?",
+        "output": "Configure 'logwatch' or 'monit' to monitor system logs and setup SMTP settings to send email alerts based on specific system events or thresholds."
+    },
+    {
+        "instruction": "Show how to find detailed network statistics including errors on a DGX system.",
+        "input": "How can I find detailed network statistics including errors on my DGX system?",
+        "output": "netstat -i"
+    },
+    {
+        "instruction": "List the command to determine the real-time bandwidth usage on a DGX system.",
+        "input": "What command should I use to determine real-time bandwidth usage on my DGX system?",
+        "output": "bmon"
+    },
+    {
+        "instruction": "Provide the command to find out which files are open by a specific application on a DGX system.",
+        "input": "How do I find out which files are open by a specific application on my DGX?",
+        "output": "lsof -c application_name"
+    },
+    {
+        "instruction": "Explain how to increase the number of open file descriptors on a DGX system.",
+        "input": "What steps should I take to increase the number of open file descriptors on my DGX system?",
+        "output": "Edit '/etc/security/limits.conf' to add 'username soft nofile 5000' and 'username hard nofile 10000'. Log out and back in for the changes to take effect."
+    },
+    {
+        "instruction": "Show how to redirect output of a running process to a file on a DGX system.",
+        "input": "How can I redirect the output of a running process to a file on my DGX system?",
+        "output": "Use 'strace -p process_id -o outputfile.txt' to trace system calls from the process and save them to a file."
+    },
+    {
+        "instruction": "Describe how to list all background services and their current statuses on a DGX system.",
+        "input": "How do I list all background services and their statuses on my DGX system?",
+        "output": "systemctl list-units --type=service --state=running"
+    },
+    {
+        "instruction": "Provide the command to test the read and write speed of a disk on a DGX system.",
+        "input": "What command can I use to test the read and write speed of a disk on my DGX?",
+        "output": "hdparm -Tt /dev/sdx"
+    },
+    {
+        "instruction": "Explain how to perform a security audit on a DGX system.",
+        "input": "How do I perform a security audit on my DGX system?",
+        "output": "Use tools like 'lynis' or 'chkrootkit' for general security auditing and vulnerability scanning. Review the audit reports and apply necessary security measures based on the recommendations."
+    }, {
+        "instruction": "Provide the command to view all currently logged-in users on a DGX system.",
+        "input": "How can I see all currently logged-in users on my DGX system?",
+        "output": "who"
+    },
+    {
+        "instruction": "Describe how to manually update the SSL certificates on a DGX system.",
+        "input": "What steps should I take to manually update the SSL certificates on my DGX system?",
+        "output": "Locate the current SSL certificate files, obtain new certificates from your CA, replace the old files with the new ones, and restart the web server or service using the certificates."
+    },
+    {
+        "instruction": "Show how to check for system updates on a DGX system using the command line.",
+        "input": "How do I check for system updates on my DGX system using the command line?",
+        "output": "apt update && apt list --upgradable"
+    },
+    {
+        "instruction": "List the command to monitor CPU temperature on a DGX system.",
+        "input": "What command should I use to monitor CPU temperature on my DGX system?",
+        "output": "sensors"
+    },
+    {
+        "instruction": "Provide the command to restart a specific network service on a DGX system.",
+        "input": "How do I restart a specific network service on my DGX system?",
+        "output": "systemctl restart servicename.service"
+    },
+    {
+        "instruction": "Explain how to configure a static IP address for Ethernet on a DGX system.",
+        "input": "What steps should I take to configure a static IP address for Ethernet on my DGX system?",
+        "output": "Edit '/etc/network/interfaces' to define your Ethernet interface with a static IP, netmask, gateway, and DNS servers. Restart the networking service with 'sudo systemctl restart networking'."
+    },
+    {
+        "instruction": "Show how to find the installation date of a package on a DGX system.",
+        "input": "How can I find the installation date of a package on my DGX system?",
+        "output": "grep installed /var/log/dpkg.log | grep packagename"
+    },
+    {
+        "instruction": "Describe how to manually set up a printer on a DGX system.",
+        "input": "How do I manually set up a printer on my DGX system?",
+        "output": "Use the 'system-config-printer' tool to add and configure the printer. Ensure that the correct drivers are installed and configure the printer settings through the GUI."
+    },
+    {
+        "instruction": "Provide the command to list all hardware details including serial numbers on a DGX system.",
+        "input": "What command can I use to list all hardware details including serial numbers on my DGX?",
+        "output": "lshw -serial"
+    },
+    {
+        "instruction": "Explain how to configure email server settings on a DGX system for sending alerts.",
+        "input": "How do I configure email server settings on my DGX system for sending alerts?",
+        "output": "Edit the '/etc/ssmtp/ssmtp.conf' file to specify the SMTP server, authentication credentials, and the From email address. Configure applications like 'logwatch' or 'monit' to use this server for sending emails."
+    },  {
+        "instruction": "Provide the command to list all active network connections and listening ports on a DGX system.",
+        "input": "How can I list all active network connections and listening ports on my DGX system?",
+        "output": "netstat -tulnp"
+    },
+    {
+        "instruction": "Describe how to create a user account and grant it sudo privileges on a DGX system.",
+        "input": "What steps should I take to create a user account and grant it sudo privileges on my DGX system?",
+        "output": "Use 'useradd -m username' to create a new user. Set a password with 'passwd username'. Add the user to the sudo group with 'usermod -aG sudo username'."
+    },
+    {
+        "instruction": "Show how to backup and restore the entire system state on a DGX system.",
+        "input": "How can I backup and then restore the entire system state on my DGX system?",
+        "output": "Use 'rsync -aAXv / --exclude={/dev/*,/proc/*,/sys/*,/tmp/*,/run/*,/mnt/*,/media/*,/lost+found} /path/to/backup/' to create a backup. Restore by reversing the paths in the rsync command."
+    },
+    {
+        "instruction": "List the command to find out the last login times for all users on a DGX system.",
+        "input": "What command should I use to find out the last login times for all users on my DGX system?",
+        "output": "lastlog"
+    },
+    {
+        "instruction": "Provide the command to display detailed information about the CPU architecture on a DGX system.",
+        "input": "How do I display detailed information about the CPU architecture on my DGX system?",
+        "output": "lscpu"
+    },
+    {
+        "instruction": "Explain how to change the network hostname without rebooting on a DGX system.",
+        "input": "What steps should I take to change the network hostname without rebooting on my DGX system?",
+        "output": "Edit '/etc/hostname' and '/etc/hosts' to reflect the new hostname. Apply the change with 'hostnamectl set-hostname new_hostname'."
+    },
+    {
+        "instruction": "Show how to limit the CPU usage of a specific process on a DGX system.",
+        "input": "How can I limit the CPU usage of a specific process on my DGX system?",
+        "output": "Use 'cpulimit -p process_id -l limit_percentage' where 'process_id' is the ID of the process and 'limit_percentage' is the CPU usage limit."
+    },
+    {
+        "instruction": "Describe how to check the software version of all installed applications on a DGX system.",
+        "input": "How do I check the software version of all installed applications on my DGX system?",
+        "output": "dpkg -l"
+    },
+    {
+        "instruction": "Provide the command to shut down a DGX system after a specific time interval.",
+        "input": "What command can I use to schedule a shutdown of my DGX system after a specific time interval?",
+        "output": "shutdown -h +time_in_minutes"
+    },
+    {
+        "instruction": "Explain how to secure the MySQL database server on a DGX system.",
+        "input": "How do I secure the MySQL database server on my DGX system?",
+        "output": "Run 'mysql_secure_installation' to set root passwords, remove anonymous users, disallow root login remotely, and remove test databases. Restart the MySQL service afterward."
+    },  {
+        "instruction": "Provide the command to list all storage devices and their mount points on a DGX system.",
+        "input": "How can I list all storage devices and their mount points on my DGX system?",
+        "output": "lsblk"
+    },
+    {
+        "instruction": "Describe how to reset a user's password on a DGX system.",
+        "input": "What steps should I take to reset a user's password on my DGX system?",
+        "output": "Use 'passwd username' to change the user's password. Follow the prompts to enter and confirm the new password."
+    },
+    {
+        "instruction": "Show how to update the system's timezone data on a DGX system.",
+        "input": "How can I update the system's timezone data on my DGX system?",
+        "output": "timedatectl set-timezone 'TimeZone'"
+    },
+    {
+        "instruction": "List the command to check the memory performance statistics on a DGX system.",
+        "input": "What command should I use to check the memory performance statistics on my DGX system?",
+        "output": "vmstat"
+    },
+    {
+        "instruction": "Provide the command to find out which services failed to start on boot on a DGX system.",
+        "input": "How do I find out which services failed to start on boot on my DGX?",
+        "output": "systemctl --failed"
+    },
+    {
+        "instruction": "Explain how to add a static route to the network configuration on a DGX system.",
+        "input": "What steps should I take to add a static route to the network configuration on my DGX system?",
+        "output": "Edit '/etc/netplan/01-netcfg.yaml' to add routes under the appropriate ethernet interface. Apply changes with 'netplan apply'."
+    },
+    {
+        "instruction": "Show how to compress multiple directories into a single archive on a DGX system.",
+        "input": "How can I compress multiple directories into a single archive on my DGX system?",
+        "output": "tar -czf archive_name.tar.gz /path/to/dir1 /path/to/dir2"
+    },
+    {
+        "instruction": "Describe how to verify the integrity of downloaded files using checksums on a DGX system.",
+        "input": "How do I verify the integrity of downloaded files using checksums on my DGX system?",
+        "output": "Use 'sha256sum filename' or 'md5sum filename' to generate a checksum of the file and compare it with the expected checksum provided by the source."
+    },
+    {
+        "instruction": "Provide the command to display all current environment variables on a DGX system.",
+        "input": "What command shows all current environment variables on my DGX?",
+        "output": "printenv"
+    },
+    {
+        "instruction": "Explain how to configure a DHCP server on a DGX system.",
+        "input": "How do I configure a DHCP server on my DGX system?",
+        "output": "Install the 'isc-dhcp-server' package. Edit '/etc/dhcp/dhcpd.conf' to set your network configuration. Enable and start the service with 'systemctl enable isc-dhcp-server' and 'systemctl start isc-dhcp-server'."
+    },    {
+        "instruction": "Provide the command to view the status of all active and inactive network interfaces on a DGX system.",
+        "input": "How can I view the status of all active and inactive network interfaces on my DGX system?",
+        "output": "ip link"
+    },
+    {
+        "instruction": "Describe how to set up file sharing between a DGX system and other networked computers.",
+        "input": "What steps should I take to set up file sharing between my DGX system and other networked computers?",
+        "output": "Install and configure 'Samba' or 'NFS'. For Samba, edit '/etc/samba/smb.conf' to define share directories and access permissions. Restart the samba service. For NFS, edit '/etc/exports' to define shared directories and permissions, then restart the NFS service."
+    },
+    {
+        "instruction": "Show how to block all incoming traffic from a specific country on a DGX system.",
+        "input": "How can I block all incoming traffic from a specific country on my DGX system?",
+        "output": "Use a geo-blocking tool like 'geoipset' along with 'iptables'. Create a geoip set with the country's IP ranges and apply an iptables rule to drop traffic from this set."
+    },
+    {
+        "instruction": "List the command to find all files modified in the last 24 hours in a specific directory on a DGX system.",
+        "input": "What command should I use to find all files modified in the last 24 hours in a specific directory on my DGX?",
+        "output": "find /path/to/directory -mtime -1 -type f"
+    },
+    {
+        "instruction": "Provide the command to display a list of all scheduled tasks for the root user on a DGX system.",
+        "input": "How do I display a list of all scheduled tasks for the root user on my DGX system?",
+        "output": "crontab -l -u root"
+    },
+    {
+        "instruction": "Explain how to manually adjust the screen resolution on a DGX system.",
+        "input": "What steps should I take to manually adjust the screen resolution on my DGX system?",
+        "output": "Use 'xrandr' to list available resolutions and set a new one. For example, 'xrandr --output DisplayPort-0 --mode 1920x1080'."
+    },
+    {
+        "instruction": "Show how to track changes to system files on a DGX system.",
+        "input": "How can I track changes to system files on my DGX system?",
+        "output": "Use 'auditd' to monitor file access and changes. Configure monitoring rules in '/etc/audit/audit.rules'. Start the audit service with 'systemctl start auditd'."
+    },
+    {
+        "instruction": "Describe how to uninstall a software package completely, including its configuration files, on a DGX system.",
+        "input": "How do I uninstall a software package completely, including its configuration files, on my DGX system?",
+        "output": "Use 'apt-get purge package_name' to remove the software and its configuration files."
+    },
+    {
+        "instruction": "Provide the command to monitor live SQL queries on a MySQL server running on a DGX system.",
+        "input": "What command can I use to monitor live SQL queries on a MySQL server on my DGX?",
+        "output": "mysql -e 'SHOW FULL PROCESSLIST;' -u root -p"
+    },
+    {
+        "instruction": "Explain how to configure automatic system updates on a DGX system.",
+        "input": "How do I configure automatic system updates on my DGX system?",
+        "output": "Edit '/etc/apt/apt.conf.d/50unattended-upgrades' to enable unattended-upgrades for security patches and other updates. Configure the package to automatically download and install updates."
+    }, {
+        "instruction": "Provide the command to view detailed power consumption statistics for all components on a DGX system.",
+        "input": "How can I view detailed power consumption statistics for all components on my DGX system?",
+        "output": "nvidia-smi -q -d POWER"
+    },
+    {
+        "instruction": "Describe how to restrict SSH access to a DGX system to a specific IP address range.",
+        "input": "What steps should I take to restrict SSH access to my DGX system to a specific IP address range?",
+        "output": "Edit '/etc/ssh/sshd_config' and add a line 'AllowUsers *@ip_address_range'. Restart the sshd service with 'systemctl restart sshd'."
+    },
+    {
+        "instruction": "Show how to find out the storage usage of each user on a DGX system.",
+        "input": "How can I find out the storage usage of each user on my DGX system?",
+        "output": "repquota -a"
+    },
+    {
+        "instruction": "List the command to display all active IPv6 connections on a DGX system.",
+        "input": "What command should I use to display all active IPv6 connections on my DGX?",
+        "output": "netstat -anp | grep ':ipv6_address'"
+    },
+    {
+        "instruction": "Provide the command to list the top ten files consuming the most disk space on a DGX system.",
+        "input": "How do I list the top ten files consuming the most disk space on my DGX system?",
+        "output": "du -a / | sort -n -r | head -n 10"
+    },
+    {
+        "instruction": "Explain how to configure a syslog server to receive logs from a DGX system.",
+        "input": "What steps should I take to configure a syslog server to receive logs from my DGX system?",
+        "output": "Set up a syslog server and configure '/etc/rsyslog.conf' on the DGX to forward logs to the server's IP address. Restart the rsyslog service with 'systemctl restart rsyslog'."
+    },
+    {
+        "instruction": "Show how to manually refresh the network interface configuration without restarting a DGX system.",
+        "input": "How can I refresh the network interface configuration without restarting my DGX system?",
+        "output": "ifdown interface_name && ifup interface_name"
+    },
+    {
+        "instruction": "Describe how to remove all orphaned packages that are no longer needed on a DGX system.",
+        "input": "How do I remove all orphaned packages that are no longer needed on my DGX system?",
+        "output": "Use 'apt-get autoremove' to clean up unused packages automatically."
+    },
+    {
+        "instruction": "Provide the command to display a calendar of the current month with highlighted current date on a DGX system.",
+        "input": "What command can I use to display a calendar of the current month with highlighted current date on my DGX?",
+        "output": "cal"
+    },
+    {
+        "instruction": "Explain how to permanently disable a specific service from starting at boot on a DGX system.",
+        "input": "How do I permanently disable a specific service from starting at boot on my DGX system?",
+        "output": "Use 'systemctl disable servicename.service' to prevent the service from starting on boot."
+    },{
+        "instruction": "Provide the command to check the version of the Linux kernel running on a DGX system.",
+        "input": "How can I check the version of the Linux kernel on my DGX system?",
+        "output": "uname -r"
+    },
+    {
+        "instruction": "Describe how to find all files owned by a specific user within a directory on a DGX system.",
+        "input": "How do I find all files owned by a specific user within a directory on my DGX system?",
+        "output": "find /path/to/directory -user username"
+    },
+    {
+        "instruction": "Show how to enable detailed debug logging for SSH connections on a DGX system.",
+        "input": "How can I enable detailed debug logging for SSH connections on my DGX system?",
+        "output": "Edit '/etc/ssh/sshd_config' and set 'LogLevel DEBUG'. Restart the sshd service with 'systemctl restart sshd'."
+    },
+    {
+        "instruction": "List the command to view all currently running processes owned by a specific user on a DGX system.",
+        "input": "What command should I use to view all currently running processes owned by a specific user on my DGX?",
+        "output": "ps -u username"
+    },
+    {
+        "instruction": "Provide the command to display the time spent in various system states since the last boot on a DGX system.",
+        "input": "How do I display the time spent in various system states since the last boot on my DGX system?",
+        "output": "vmstat -s"
+    },
+    {
+        "instruction": "Explain how to manually install a network printer on a DGX system.",
+        "input": "What steps should I take to manually install a network printer on my DGX system?",
+        "output": "Use 'system-config-printer' to add a new printer. Choose 'Network Printer' and enter the printer's IP address or host name. Select the appropriate driver and configure the printer settings."
+    },
+    {
+        "instruction": "Show how to view the default gateway for all network interfaces on a DGX system.",
+        "input": "How can I view the default gateway for all network interfaces on my DGX system?",
+        "output": "ip route show default"
+    },
+    {
+        "instruction": "Describe how to change file ownership for all files in a directory recursively on a DGX system.",
+        "input": "How do I change file ownership for all files in a directory recursively on my DGX system?",
+        "output": "chown -R newowner:newgroup /path/to/directory"
+    },
+    {
+        "instruction": "Provide the command to test network connectivity and measure the network latency to a remote host on a DGX system.",
+        "input": "What command can I use to test network connectivity and measure the network latency to a remote host on my DGX?",
+        "output": "ping -c 4 remote_host"
+    },
+    {
+        "instruction": "Explain how to schedule a weekly reboot on a DGX system.",
+        "input": "How do I schedule a weekly reboot on my DGX system?",
+        "output": "Edit the crontab for root with 'crontab -e' and add the line '0 0 * * 0 /sbin/reboot' to schedule a reboot at midnight every Sunday."
+    }, {
+        "instruction": "Provide the command to list all services that are enabled to start at boot on a DGX system.",
+        "input": "How can I list all services that are enabled to start at boot on my DGX system?",
+        "output": "systemctl list-unit-files --type=service --state=enabled"
+    },
+    {
+        "instruction": "Describe how to monitor the status of all active database connections on a DGX system.",
+        "input": "What steps should I take to monitor the status of all active database connections on my DGX system?",
+        "output": "Use the database management tool appropriate for your database type. For example, for PostgreSQL, use '# psql -c \"SELECT * FROM pg_stat_activity;\"' to view active connections."
+    },
+    {
+        "instruction": "Show how to disable root login over SSH on a DGX system.",
+        "input": "How can I disable root login over SSH on my DGX system?",
+        "output": "Edit '/etc/ssh/sshd_config', set 'PermitRootLogin no', and restart the SSH service with '# systemctl restart sshd'."
+    },
+    {
+        "instruction": "List the command to check the usage of all mounted filesystems on a DGX system.",
+        "input": "What command should I use to check the usage of all mounted filesystems on my DGX?",
+        "output": "df -h"
+    },
+    {
+        "instruction": "Provide the command to display all installed hardware components and their details on a DGX system.",
+        "input": "How do I display all installed hardware components and their details on my DGX system?",
+        "output": "lshw"
+    },
+    {
+        "instruction": "Explain how to find and remove duplicate files within a directory on a DGX system.",
+        "input": "What steps should I take to find and remove duplicate files within a directory on my DGX system?",
+        "output": "Use 'fdupes' to find duplicate files: '# fdupes /path/to/directory'. Remove duplicates by adding the '-d' option to the command."
+    },
+    {
+        "instruction": "Show how to determine which process is using the most memory on a DGX system.",
+        "input": "How can I determine which process is using the most memory on my DGX system?",
+        "output": "top -o %MEM"
+    },
+    {
+        "instruction": "Describe how to configure automatic login for a user on a DGX system.",
+        "input": "How do I configure automatic login for a user on my DGX system?",
+        "output": "Edit '/etc/gdm3/custom.conf' or the equivalent display manager config file. Under the [daemon] section, set 'AutomaticLoginEnable=true' and 'AutomaticLogin=username'."
+    },
+    {
+        "instruction": "Provide the command to change the priority of a running service on a DGX system.",
+        "input": "What command can I use to change the priority of a running service on my DGX?",
+        "output": "systemctl set-property servicename.service CPUWeight=value"
+    },
+    {
+        "instruction": "Explain how to manually update the system firmware on a DGX system.",
+        "input": "How do I manually update the system firmware on my DGX system?",
+        "output": "Download the firmware update from the manufacturer's website, verify its checksum, and follow the manufacturer's instructions to apply the update, usually involving a bootable USB drive or through the BIOS/UEFI."
+    }, {
+        "instruction": "Provide the command to list all packages installed on a DGX system that have available updates.",
+        "input": "How can I list all packages installed on my DGX system that have available updates?",
+        "output": "apt list --upgradable"
+    },
+    {
+        "instruction": "Describe how to change the default system editor on a DGX system.",
+        "input": "What steps should I take to change the default system editor on my DGX system?",
+        "output": "Use 'update-alternatives --config editor' to select the default editor from the list of installed editors."
+    },
+    {
+        "instruction": "Show how to find the IP address of a device connected to the same network as the DGX system.",
+        "input": "How can I find the IP address of a device connected to the same network as my DGX system?",
+        "output": "arp -a"
+    },
+    {
+        "instruction": "List the command to view the process tree of all running processes on a DGX system.",
+        "input": "What command should I use to view the process tree of all running processes on my DGX?",
+        "output": "pstree"
+    },
+    {
+        "instruction": "Provide the command to reset the network settings to default on a DGX system.",
+        "input": "How do I reset the network settings to default on my DGX system?",
+        "output": "Remove custom configurations from '/etc/network/interfaces' and other configuration files, then restart the network service with '# systemctl restart networking'."
+    },
+    {
+        "instruction": "Explain how to set up a RAM disk on a DGX system.",
+        "input": "What steps should I take to set up a RAM disk on my DGX system?",
+        "output": "Edit '/etc/fstab' to add a new line like 'tmpfs /mnt/ramdisk tmpfs nodev,nosuid,noexec,nodiratime,size=1024M 0 0'. Mount the RAM disk with '# mount /mnt/ramdisk'."
+    },
+    {
+        "instruction": "Show how to back up and restore the /etc folder on a DGX system.",
+        "input": "How can I back up and then restore the /etc folder on my DGX system?",
+        "output": "To back up: '# tar -czvf etc-backup.tar.gz /etc'. To restore: '# tar -xzvf etc-backup.tar.gz -C /'."
+    },
+    {
+        "instruction": "Describe how to check the health of all SSDs installed on a DGX system.",
+        "input": "How do I check the health of all SSDs installed on my DGX system?",
+        "output": "Use '# smartctl -a /dev/sdx' for each SSD device to view detailed health and status information."
+    },
+    {
+        "instruction": "Provide the command to see the number of failed login attempts on a DGX system.",
+        "input": "What command can I use to see the number of failed login attempts on my DGX?",
+        "output": "journalctl -u sshd | grep 'Failed password'"
+    },
+    {
+        "instruction": "Explain how to manually rotate logs on a DGX system.",
+        "input": "How do I manually rotate logs on my DGX system?",
+        "output": "Use 'logrotate /etc/logrotate.conf' to force log rotation according to the configurations defined in the logrotate configuration file."
+    }, {
+        "instruction": "Provide the command to find out how long the system has been running without a reboot on a DGX system.",
+        "input": "How can I find out how long the system has been running without a reboot on my DGX system?",
+        "output": "uptime"
+    },
+    {
+        "instruction": "Describe how to limit network bandwidth usage for a specific application on a DGX system.",
+        "input": "What steps should I take to limit network bandwidth usage for a specific application on my DGX system?",
+        "output": "Use 'trickle' or 'wondershaper'. For example, 'trickle -d 100 -u 50 application_name' to limit download to 100KB/s and upload to 50KB/s."
+    },
+    {
+        "instruction": "Show how to install a new kernel version on a DGX system.",
+        "input": "How can I install a new kernel version on my DGX system?",
+        "output": "apt install linux-image-your-kernel-version"
+    },
+    {
+        "instruction": "List the command to find all zombie processes on a DGX system.",
+        "input": "What command should I use to find all zombie processes on my DGX?",
+        "output": "ps aux | grep 'Z'"
+    },
+    {
+        "instruction": "Provide the command to view all network traffic in real-time on a DGX system.",
+        "input": "How do I view all network traffic in real-time on my DGX system?",
+        "output": "tcpdump -i any"
+    },
+    {
+        "instruction": "Explain how to create a swap file and enable it on a DGX system.",
+        "input": "What steps should I take to create a swap file and enable it on my DGX system?",
+        "output": "Use 'fallocate -l 1G /swapfile' to create a 1GB swap file. Make it secure with 'chmod 600 /swapfile', prepare it with 'mkswap /swapfile', and enable it with 'swapon /swapfile'. Add to '/etc/fstab' for permanency."
+    },
+    {
+        "instruction": "Show how to flush the DNS cache on a DGX system.",
+        "input": "How can I flush the DNS cache on my DGX system?",
+        "output": "If using systemd-resolved, use '# systemd-resolve --flush-caches'. For other DNS services, restart the service."
+    },
+    {
+        "instruction": "Describe how to manually sync files to a remote server on a DGX system.",
+        "input": "How do I manually sync files to a remote server on my DGX system?",
+        "output": "Use 'rsync -avz /path/to/local/folder user@remote:/path/to/remote/folder' to sync files to a remote server securely over SSH."
+    },
+    {
+        "instruction": "Provide the command to display the current read and write speed of all disks on a DGX system.",
+        "input": "What command can I use to display the current read and write speed of all disks on my DGX?",
+        "output": "iostat -dx"
+    },
+    {
+        "instruction": "Explain how to change the priority of all packets coming from a specific IP address on a DGX system.",
+        "input": "How do I change the priority of all packets coming from a specific IP address on my DGX system?",
+        "output": "Use 'tc' (traffic control). Example: 'tc qdisc add dev eth0 root handle 1: htb default 12' and 'tc class add dev eth0 parent 1: classid 1:1 htb rate 100mbit'. Then use 'tc filter add dev eth0 protocol ip parent 1:0 prio 1 u32 match ip src your_ip_address flowid 1:1' to prioritize."
+    },  {
+        "instruction": "Provide the command to list all currently mounted file systems and their mount options on a DGX system.",
+        "input": "How can I list all currently mounted file systems and their mount options on my DGX system?",
+        "output": "findmnt -lo TARGET,FSTYPE,OPTIONS"
+    },
+    {
+        "instruction": "Describe how to check the file integrity of all packages installed on a DGX system.",
+        "input": "What steps should I take to check the file integrity of all packages installed on my DGX system?",
+        "output": "Use 'debsums' to verify the integrity of installed packages. Install it if necessary with '# apt install debsums', then run '# debsums -s' to check for any missing or corrupted files."
+    },
+    {
+        "instruction": "Show how to enable and configure automatic security updates on a DGX system.",
+        "input": "How can I enable and configure automatic security updates on my DGX system?",
+        "output": "Install the 'unattended-upgrades' package with '# apt install unattended-upgrades'. Enable and configure it by editing '/etc/apt/apt.conf.d/50unattended-upgrades' to specify the update settings."
+    },
+    {
+        "instruction": "List the command to monitor the usage of all network interfaces on a DGX system in real time.",
+        "input": "What command should I use to monitor the usage of all network interfaces on my DGX in real time?",
+        "output": "iftop"
+    },
+    {
+        "instruction": "Provide the command to determine the service using a specific port on a DGX system.",
+        "input": "How do I determine which service is using a specific port on my DGX system?",
+        "output": "netstat -tulnp | grep ':port'"
+    },
+    {
+        "instruction": "Explain how to secure all incoming and outgoing connections with a firewall on a DGX system.",
+        "input": "What steps should I take to secure all incoming and outgoing connections with a firewall on my DGX system?",
+        "output": "Use 'iptables' to configure firewall rules. For incoming connections, use rules like '# iptables -A INPUT -i eth0 -p tcp --dport http -j ACCEPT' for allowed services and '# iptables -A INPUT -j DROP' for the rest. Ensure outgoing rules are also set according to policy."
+    },
+    {
+        "instruction": "Show how to restore default permissions for system files and directories on a DGX system.",
+        "input": "How can I restore default permissions for system files and directories on my DGX system?",
+        "output": "Use a system snapshot or backup to revert permissions, or manually set known permissions with 'chmod' and 'chown' for critical system files and directories."
+    },
+    {
+        "instruction": "Describe how to list all active user sessions on a DGX system.",
+        "input": "How do I list all active user sessions on my DGX system?",
+        "output": "w"
+    },
+    {
+        "instruction": "Provide the command to view the history of all commands executed in the terminal on a DGX system.",
+        "input": "What command can I use to view the history of all commands executed in the terminal on my DGX?",
+        "output": "history"
+    },
+    {
+        "instruction": "Explain how to set a quota for disk usage per user on a DGX system.",
+        "input": "How do I set a quota for disk usage per user on my DGX system?",
+        "output": "Install the 'quota' package with '# apt-get install quota'. Edit '/etc/fstab' to enable quotas by adding 'usrquota' or 'grpquota' to the file system options. Remount the file system and use 'edquota -u username' to set user quotas."
+    },{
+        "instruction": "Provide the command to view detailed information about CPU hardware, including architecture and speed, on a DGX system.",
+        "input": "How can I view detailed information about the CPU hardware on my DGX system?",
+        "output": "lscpu"
+    },
+    {
+        "instruction": "Describe how to change the system's hostname permanently on a DGX system.",
+        "input": "What steps should I take to permanently change the system's hostname on my DGX system?",
+        "output": "Edit the '/etc/hostname' and '/etc/hosts' files to reflect the new hostname. Then apply the change with '# hostnamectl set-hostname new_hostname'."
+    },
+    {
+        "instruction": "Show how to check the status of a specific service and its dependencies on a DGX system.",
+        "input": "How can I check the status of a specific service and its dependencies on my DGX system?",
+        "output": "systemctl status service_name --full --no-pager"
+    },
+    {
+        "instruction": "List the command to display the current network configuration settings on a DGX system.",
+        "input": "What command should I use to display the current network configuration settings on my DGX?",
+        "output": "ip addr show"
+    },
+    {
+        "instruction": "Provide the command to check for memory errors on a DGX system.",
+        "input": "How do I check for memory errors on my DGX system?",
+        "output": "dmesg | grep -i ECC"
+    },
+    {
+        "instruction": "Explain how to update all installed packages to their latest versions on a DGX system.",
+        "input": "What steps should I take to update all installed packages to their latest versions on my DGX system?",
+        "output": "Run '# apt update' to refresh the package list, then '# apt upgrade' to upgrade all installed packages to their latest versions."
+    },
+    {
+        "instruction": "Show how to find and stop a service that is causing high CPU usage on a DGX system.",
+        "input": "How can I find and stop a service that is causing high CPU usage on my DGX system?",
+        "output": "Use '# top' to identify the service with high CPU usage. Stop it with '# systemctl stop service_name'."
+    },
+    {
+        "instruction": "Describe how to back up a specific database using PostgreSQL on a DGX system.",
+        "input": "How do I back up a specific database using PostgreSQL on my DGX system?",
+        "output": "Use the command '# pg_dump dbname > dbname_backup.sql' to create a backup of the database."
+    },
+    {
+        "instruction": "Provide the command to display all USB devices connected to a DGX system.",
+        "input": "What command can I use to display all USB devices connected to my DGX?",
+        "output": "lsusb"
+    },
+    {
+        "instruction": "Explain how to manually clean up old logs to free up disk space on a DGX system.",
+        "input": "How do I manually clean up old logs to free up disk space on my DGX system?",
+        "output": "Use '# find /var/log -type f -name '*.log' -mtime +10 -delete' to delete all log files older than 10 days."
+    },    {
+        "instruction": "Provide the command to force a file system check on the next reboot of a DGX system.",
+        "input": "How can I force a file system check on the next reboot of my DGX system?",
+        "output": "shutdown -rF now"
+    },
+    {
+        "instruction": "Describe how to configure a static IP address on a network interface on a DGX system.",
+        "input": "What steps should I take to configure a static IP address on a network interface on my DGX system?",
+        "output": "Edit '/etc/network/interfaces' to define the static IP address, netmask, gateway, and DNS servers for the interface. Then restart the networking service with '# systemctl restart networking.service'."
+    },
+    {
+        "instruction": "Show how to set up a RAID 1 array on a DGX system.",
+        "input": "How can I set up a RAID 1 array on my DGX system?",
+        "output": "Use 'mdadm' to create the RAID array. Initialize the RAID with '# mdadm --create --verbose /dev/md0 --level=1 --raid-devices=2 /dev/sdx /dev/sdy'. Update '/etc/mdadm/mdadm.conf' and regenerate the initramfs."
+    },
+    {
+        "instruction": "List the command to display all active TCP connections on a DGX system.",
+        "input": "What command should I use to display all active TCP connections on my DGX?",
+        "output": "ss -t -a"
+    },
+    {
+        "instruction": "Provide the command to change the scheduling priority of a running process on a DGX system.",
+        "input": "How do I change the scheduling priority of a running process on my DGX system?",
+        "output": "renice -n priority -p process_id"
+    },
+    {
+        "instruction": "Explain how to add a new repository and install software from it on a DGX system.",
+        "input": "What steps should I take to add a new repository and install software from it on my DGX system?",
+        "output": "Add the repository with '# add-apt-repository ppa:user/ppa-name'. Update the package list with '# apt update', then install the software with '# apt install package_name'."
+    },
+    {
+        "instruction": "Show how to create a virtual network interface on a DGX system.",
+        "input": "How can I create a virtual network interface on my DGX system?",
+        "output": "Edit '/etc/network/interfaces' to add a virtual interface, specifying the address, netmask, and broadcast. Bring the interface up with '# ifup iface_name'."
+    },
+    {
+        "instruction": "Describe how to perform a security scan on a DGX system using ClamAV.",
+        "input": "How do I perform a security scan on my DGX system using ClamAV?",
+        "output": "First, update the ClamAV database with '# freshclam'. Then perform a scan with '# clamscan -r /path/to/scan'."
+    },
+    {
+        "instruction": "Provide the command to list the services that start at boot and their current status on a DGX system.",
+        "input": "What command can I use to list the services that start at boot and their current status on my DGX?",
+        "output": "systemctl list-unit-files --type=service --state=enabled,disabled"
+    },
+    {
+        "instruction": "Explain how to manually compress and encrypt files using GPG on a DGX system.",
+        "input": "How do I manually compress and encrypt files using GPG on my DGX system?",
+        "output": "First compress the files using '# tar -czf files.tar.gz /path/to/files'. Encrypt the compressed file with '# gpg -c files.tar.gz', then delete the original tar file if necessary."
+    },  {
+        "instruction": "Provide the command to view the memory usage and swap usage in real time on a DGX system.",
+        "input": "How can I view the memory usage and swap usage in real time on my DGX system?",
+        "output": "free -m"
+    },
+    {
+        "instruction": "Describe how to resize a partition without losing data on a DGX system.",
+        "input": "What steps should I take to resize a partition without losing data on my DGX system?",
+        "output": "Use a tool like 'gparted' or 'parted'. Unmount the partition if it's mounted, then resize it with the tool. For example, with 'parted', use 'resizepart PART_NUMBER END' to change the size."
+    },
+    {
+        "instruction": "Show how to check the SMTP server settings on a DGX system.",
+        "input": "How can I check the SMTP server settings on my DGX system?",
+        "output": "Examine the SMTP configuration files, typically located in '/etc/postfix/main.cf' for a Postfix SMTP server. Use '# postconf' to list current settings."
+    },
+    {
+        "instruction": "List the command to find out which user is using the most disk space on a DGX system.",
+        "input": "What command should I use to find out which user is using the most disk space on my DGX?",
+        "output": "du -sh /home/* | sort -rh | head -n 1"
+    },
+    {
+        "instruction": "Provide the command to restart all network services on a DGX system.",
+        "input": "How do I restart all network services on my DGX system?",
+        "output": "systemctl restart networking"
+    },
+    {
+        "instruction": "Explain how to secure a web server running on a DGX system.",
+        "input": "What steps should I take to secure a web server running on my DGX system?",
+        "output": "Install and configure 'mod_security' and 'mod_evasive' modules in Apache or similar tools in other web servers. Configure SSL with strong ciphers, and keep web server software and its modules up to date."
+    },
+    {
+        "instruction": "Show how to track file changes using inotify on a DGX system.",
+        "input": "How can I track file changes using inotify on my DGX system?",
+        "output": "Use the 'inotify-tools' package. Install it if necessary with '# apt install inotify-tools'. Use 'inotifywait' to monitor specific directories or files, e.g., '# inotifywait -m /path/to/watch'."
+    },
+    {
+        "instruction": "Describe how to manually adjust the fan speed for a specific hardware component on a DGX system.",
+        "input": "How do I manually adjust the fan speed for a specific hardware component on my DGX system?",
+        "output": "Use 'nvidia-settings' for Nvidia components. For example, set the fan speed with '# nvidia-settings -a [fan:0]/GPUTargetFanSpeed=50' for 50% speed."
+    },
+    {
+        "instruction": "Provide the command to list all failed login attempts on a DGX system.",
+        "input": "What command can I use to list all failed login attempts on my DGX?",
+        "output": "grep 'failed' /var/log/auth.log"
+    },
+    {
+        "instruction": "Explain how to set up a cron job to run a script every hour on a DGX system.",
+        "input": "How do I set up a cron job to run a script every hour on my DGX system?",
+        "output": "Edit the cron table with 'crontab -e' for the desired user and add '0 * * * * /path/to/script.sh' to execute the script at the start of every hour."
+    }, {
+        "instruction": "Provide the command to display all running processes along with their CPU and memory usage on a DGX system.",
+        "input": "How can I display all running processes along with their CPU and memory usage on my DGX system?",
+        "output": "top"
+    },
+    {
+        "instruction": "Describe how to configure a firewall to only allow SSH access from specific IP addresses on a DGX system.",
+        "input": "What steps should I take to configure a firewall to only allow SSH access from specific IP addresses on my DGX system?",
+        "output": "Use iptables to restrict SSH access. Set default rules to drop all incoming SSH connections, then explicitly allow from specific IPs with commands like '# iptables -A INPUT -p tcp --dport 22 -s your_ip_address -j ACCEPT'."
+    },
+    {
+        "instruction": "Show how to enable core dump files for debugging application crashes on a DGX system.",
+        "input": "How can I enable core dump files for debugging application crashes on my DGX system?",
+        "output": "Edit '/etc/security/limits.conf' to include 'username soft core unlimited' and 'username hard core unlimited'. Enable core dumps globally with '# sysctl -w kernel.core_pattern=/path/to/core.%e.%p'."
+    },
+    {
+        "instruction": "List the command to monitor disk usage growth over time on a DGX system.",
+        "input": "What command should I use to monitor disk usage growth over time on my DGX?",
+        "output": "watch -n 60 df -h"
+    },
+    {
+        "instruction": "Provide the command to download a file from the internet using the command line on a DGX system.",
+        "input": "How do I download a file from the internet using the command line on my DGX system?",
+        "output": "wget [URL]"
+    },
+    {
+        "instruction": "Explain how to manually install a Python package using pip on a DGX system.",
+        "input": "What steps should I take to manually install a Python package using pip on my DGX system?",
+        "output": "Ensure pip is installed with '# apt install python3-pip'. Install the package with '# pip install package_name'."
+    },
+    {
+        "instruction": "Show how to check the firmware version of all connected hardware devices on a DGX system.",
+        "input": "How can I check the firmware version of all connected hardware devices on my DGX system?",
+        "output": "dmidecode"
+    },
+    {
+        "instruction": "Describe how to roll back a package to a previous version on a DGX system.",
+        "input": "How do I roll back a package to a previous version on my DGX system?",
+        "output": "Find the previous version with '# apt list -a package_name'. Install the specific version with '# apt install package_name=version_number'."
+    },
+    {
+        "instruction": "Provide the command to find all services that are currently in a failed state on a DGX system.",
+        "input": "What command can I use to find all services that are currently in a failed state on my DGX?",
+        "output": "systemctl --failed"
+    },
+    {
+        "instruction": "Explain how to change the default system locale on a DGX system.",
+        "input": "How do I change the default system locale on my DGX system?",
+        "output": "Edit '/etc/locale.gen' to uncomment the desired locale. Generate the new locale with '# locale-gen'. Update the system locale with '# update-locale LANG=your_locale'."
+    }, {
+        "instruction": "Provide the command to view the status of the system's battery on a DGX system, if applicable.",
+        "input": "How can I view the status of the system's battery on my DGX system?",
+        "output": "upower -i /org/freedesktop/UPower/devices/battery_BAT0"
+    },
+    {
+        "instruction": "Describe how to find and replace a string in files within a directory recursively on a DGX system.",
+        "input": "What steps should I take to find and replace a string in files within a directory recursively on my DGX system?",
+        "output": "Use the 'find' and 'sed' commands: '# find /path/to/directory -type f -exec sed -i 's/old_string/new_string/g' {} +'."
+    },
+    {
+        "instruction": "Show how to block a specific application from accessing the internet on a DGX system.",
+        "input": "How can I block a specific application from accessing the internet on my DGX system?",
+        "output": "Identify the application's executable and use iptables to block its access: '# iptables -A OUTPUT -m owner --uid-owner user_id -j DROP', where 'user_id' is obtained from the application's process ID."
+    },
+    {
+        "instruction": "List the command to determine the amount of data sent and received through the network interfaces on a DGX system.",
+        "input": "What command should I use to determine the amount of data sent and received through the network interfaces on my DGX?",
+        "output": "ifconfig eth0"
+    },
+    {
+        "instruction": "Provide the command to list all cron jobs scheduled on a DGX system.",
+        "input": "How do I list all cron jobs scheduled on my DGX system?",
+        "output": "crontab -l"
+    },
+    {
+        "instruction": "Explain how to set file permissions to read-only for a group of users on a specific directory on a DGX system.",
+        "input": "What steps should I take to set file permissions to read-only for a group of users on a specific directory on my DGX system?",
+        "output": "Change the directory permissions with '# chmod 740 /path/to/directory' to allow owner full access, group read-only, and no access for others."
+    },
+    {
+        "instruction": "Show how to monitor all attempts to access a specific file on a DGX system.",
+        "input": "How can I monitor all attempts to access a specific file on my DGX system?",
+        "output": "Use the 'auditd' system. Configure an audit rule with '# auditctl -w /path/to/file -p war -k key_name' and monitor the audit log with '# ausearch -k key_name'."
+    },
+    {
+        "instruction": "Describe how to manually clear the print queue on a DGX system.",
+        "input": "How do I manually clear the print queue on my DGX system?",
+        "output": "Stop the print service with '# systemctl stop cups', clear the queue with '# cancel -a', then restart the service with '# systemctl start cups'."
+    },
+    {
+        "instruction": "Provide the command to check the current system load and number of running processes on a DGX system.",
+        "input": "What command can I use to check the current system load and number of running processes on my DGX?",
+        "output": "uptime"
+    },
+    {
+        "instruction": "Explain how to create a bootable USB drive from an ISO file on a DGX system.",
+        "input": "How do I create a bootable USB drive from an ISO file on my DGX system?",
+        "output": "Use the 'dd' command: '# dd if=/path/to/iso of=/dev/sdX bs=4M status=progress oflag=sync', where '/dev/sdX' is your USB drive."
+    },{
+        "instruction": "Provide the command to view all installed kernels on a DGX system.",
+        "input": "How can I view all installed kernels on my DGX system?",
+        "output": "dpkg --list | grep linux-image"
+    },
+    {
+        "instruction": "Describe how to update the network driver on a DGX system.",
+        "input": "What steps should I take to update the network driver on my DGX system?",
+        "output": "Identify the network card with '# lspci | grep Ethernet', download the latest driver from the manufacturer's website, and follow the installation instructions provided, typically involving '# make && make install'."
+    },
+    {
+        "instruction": "Show how to enable logging for all SSH connections on a DGX system.",
+        "input": "How can I enable logging for all SSH connections on my DGX system?",
+        "output": "Edit '/etc/ssh/sshd_config' to set 'LogLevel INFO' or 'LogLevel VERBOSE', then restart the SSH service with '# systemctl restart sshd'."
+    },
+    {
+        "instruction": "List the command to display detailed information about all partitions on a DGX system.",
+        "input": "What command should I use to display detailed information about all partitions on my DGX?",
+        "output": "fdisk -l"
+    },
+    {
+        "instruction": "Provide the command to see all logged-in users and their activities on a DGX system.",
+        "input": "How do I see all logged-in users and their activities on my DGX system?",
+        "output": "w"
+    },
+    {
+        "instruction": "Explain how to block ICMP (ping) requests on a DGX system.",
+        "input": "What steps should I take to block ICMP (ping) requests on my DGX system?",
+        "output": "Use iptables to block ICMP requests: '# iptables -A INPUT -p icmp -j DROP', then save the rule with '# iptables-save > /etc/iptables/rules.v4'."
+    },
+    {
+        "instruction": "Show how to change the default port for SSH on a DGX system.",
+        "input": "How can I change the default port for SSH on my DGX system?",
+        "output": "Edit '/etc/ssh/sshd_config', change the 'Port' line to your desired port number, then restart the SSH service with '# systemctl restart sshd'."
+    },
+    {
+        "instruction": "Describe how to configure disk quotas for users on a DGX system.",
+        "input": "How do I configure disk quotas for users on my DGX system?",
+        "output": "Edit '/etc/fstab' to enable quotas by adding 'usrquota,grpquota' to the filesystem options. Re-mount the filesystems. Initialize and edit quotas with '# quotacheck -cum /' and '# edquota -u username'."
+    },
+    {
+        "instruction": "Provide the command to find and remove all files larger than 100MB on a DGX system.",
+        "input": "What command can I use to find and remove all files larger than 100MB on my DGX?",
+        "output": "find / -type f -size +100M -exec rm {} +"
+    },
+    {
+        "instruction": "Explain how to manually back up the '/home' directory to an external drive on a DGX system.",
+        "input": "How do I manually back up the '/home' directory to an external drive on my DGX system?",
+        "output": "Use the rsync command: '# rsync -av --progress /home/ /mnt/externalDrive/BackupHome/'. Ensure the external drive is mounted on '/mnt/externalDrive/' before starting."
+    },{
+        "instruction": "Provide the command to check the health and status of the RAID array on a DGX system.",
+        "input": "How can I check the health and status of the RAID array on my DGX system?",
+        "output": "cat /proc/mdstat"
+    },
+    {
+        "instruction": "Describe how to schedule a script to run at midnight every day on a DGX system.",
+        "input": "What steps should I take to schedule a script to run at midnight every day on my DGX system?",
+        "output": "Edit the crontab file with 'crontab -e' and add the line '0 0 * * * /path/to/script.sh' to run the script at midnight daily."
+    },
+    {
+        "instruction": "Show how to list all network interfaces and their IP addresses on a DGX system.",
+        "input": "How can I list all network interfaces and their IP addresses on my DGX system?",
+        "output": "ip addr show"
+    },
+    {
+        "instruction": "List the command to monitor real-time resource usage (CPU, memory, disk, network) on a DGX system.",
+        "input": "What command should I use to monitor real-time resource usage on my DGX?",
+        "output": "glances"
+    },
+    {
+        "instruction": "Provide the command to update the BIOS firmware on a DGX system.",
+        "input": "How do I update the BIOS firmware on my DGX system?",
+        "output": "First, download the latest BIOS update from the manufacturer's website. Then, follow the manufacturer’s instructions, typically involving creating a bootable USB drive and using the firmware update utility."
+    },
+    {
+        "instruction": "Explain how to disable a user account on a DGX system.",
+        "input": "What steps should I take to disable a user account on my DGX system?",
+        "output": "Use the command '# usermod -L username' to lock the user's account, preventing login. To disable the account, edit '/etc/passwd' and change the user's shell to '/usr/sbin/nologin'."
+    },
+    {
+        "instruction": "Show how to find all files modified within the last 7 days on a DGX system.",
+        "input": "How can I find all files modified within the last 7 days on my DGX system?",
+        "output": "find / -mtime -7"
+    },
+    {
+        "instruction": "Describe how to manually set up a VPN connection on a DGX system.",
+        "input": "How do I manually set up a VPN connection on my DGX system?",
+        "output": "Install 'openvpn'. Place the VPN configuration file (.ovpn) in '/etc/openvpn/'. Start the VPN with '# systemctl start openvpn@config_name', replacing 'config_name' with the name of your configuration file."
+    },
+    {
+        "instruction": "Provide the command to view the current load averages for 1, 5, and 15 minutes on a DGX system.",
+        "input": "What command can I use to view the current load averages for 1, 5, and 15 minutes on my DGX?",
+        "output": "uptime"
+    },
+    {
+        "instruction": "Explain how to change the priority of a running process on a DGX system.",
+        "input": "How do I change the priority of a running process on my DGX system?",
+        "output": "Use the 'nice' command to change the priority of a new process, or 'renice' to change the priority of an existing process. For example, '# renice -n 10 -p process_id' to set the niceness to 10."
+    },{
+        "instruction": "Provide the command to list all active ports and the applications using them on a DGX system.",
+        "input": "How can I list all active ports and the applications using them on my DGX system?",
+        "output": "netstat -tulpn"
+    },
+    {
+        "instruction": "Describe how to create a new file system on a newly added storage device on a DGX system.",
+        "input": "What steps should I take to create a new file system on a newly added storage device on my DGX system?",
+        "output": "Identify the device with '# fdisk -l', create a new partition with 'fdisk', format the partition with a file system, e.g., '# mkfs.ext4 /dev/sdx1', and then mount it."
+    },
+    {
+        "instruction": "Show how to delete all files within a directory that are older than 30 days on a DGX system.",
+        "input": "How can I delete all files within a directory that are older than 30 days on my DGX system?",
+        "output": "find /path/to/directory -type f -mtime +30 -delete"
+    },
+    {
+        "instruction": "List the command to view detailed information about all connected SCSI devices on a DGX system.",
+        "input": "What command should I use to view detailed information about all connected SCSI devices on my DGX?",
+        "output": "lsscsi"
+    },
+    {
+        "instruction": "Provide the command to check the health of the SSDs on a DGX system.",
+        "input": "How do I check the health of the SSDs on my DGX system?",
+        "output": "smartctl -a /dev/sdX"
+    },
+    {
+        "instruction": "Explain how to install and configure a web server on a DGX system.",
+        "input": "What steps should I take to install and configure a web server on my DGX system?",
+        "output": "Install Apache with '# apt install apache2'. Configure it by editing '/etc/apache2/apache2.conf' and setting up virtual hosts in '/etc/apache2/sites-available/'. Enable the site with '# a2ensite sitename'."
+    },
+    {
+        "instruction": "Show how to reset the network settings to their default on a DGX system.",
+        "input": "How can I reset the network settings to their default on my DGX system?",
+        "output": "Reconfigure the network interfaces back to DHCP or the original static settings by editing '/etc/network/interfaces', and restart the network service with '# systemctl restart networking'."
+    },
+    {
+        "instruction": "Describe how to monitor the system logs in real time on a DGX system.",
+        "input": "How do I monitor the system logs in real time on my DGX system?",
+        "output": "Use '# tail -f /var/log/syslog' to watch the system logs in real time."
+    },
+    {
+        "instruction": "Provide the command to verify the integrity of all installed packages on a DGX system.",
+        "input": "What command can I use to verify the integrity of all installed packages on my DGX?",
+        "output": "debsums -s"
+    },
+    {
+        "instruction": "Explain how to manually adjust the clock speed of the CPU on a DGX system.",
+        "input": "How do I manually adjust the clock speed of the CPU on my DGX system?",
+        "output": "Use the 'cpufreq-set' tool. First, check available frequencies with '# cpufreq-info', then set the desired frequency with '# cpufreq-set -u frequency_kHz'."
+    }, {
+        "instruction": "Provide the command to find all processes running as a specific user on a DGX system.",
+        "input": "How can I find all processes running as a specific user on my DGX system?",
+        "output": "ps -u username"
+    },
+    {
+        "instruction": "Describe how to set up an automatic backup for the '/var' directory to a remote server every week on a DGX system.",
+        "input": "What steps should I take to set up an automatic backup for the '/var' directory to a remote server every week on my DGX system?",
+        "output": "Configure a cron job by editing the crontab with 'crontab -e'. Add a line like '0 2 * * 1 rsync -avz /var/ user@remote_server:/backup/var/' to perform the backup every Monday at 2 AM."
+    },
+    {
+        "instruction": "Show how to list all network packets dropped by the firewall on a DGX system.",
+        "input": "How can I list all network packets dropped by the firewall on my DGX system?",
+        "output": "iptables -nvL INPUT | grep DROP"
+    },
+    {
+        "instruction": "List the command to check the available disk space on all mounted filesystems on a DGX system.",
+        "input": "What command should I use to check the available disk space on all mounted filesystems on my DGX?",
+        "output": "df -h"
+    },
+    {
+        "instruction": "Provide the command to monitor CPU temperature in real-time on a DGX system.",
+        "input": "How do I monitor CPU temperature in real-time on my DGX system?",
+        "output": "watch -n 2 sensors"
+    },
+    {
+        "instruction": "Explain how to restrict access to the SSH server to only allow connections from a specific network on a DGX system.",
+        "input": "What steps should I take to restrict access to the SSH server to only allow connections from a specific network on my DGX system?",
+        "output": "Edit the '/etc/ssh/sshd_config' file and add a line like 'ListenAddress 192.168.1.5', where '192.168.1.5' is the internal network address. Restart SSH with '# systemctl restart sshd'."
+    },
+    {
+        "instruction": "Show how to find the size of a specific file or directory on a DGX system.",
+        "input": "How can I find the size of a specific file or directory on my DGX system?",
+        "output": "du -sh /path/to/file_or_directory"
+    },
+    {
+        "instruction": "Describe how to view the history of all commands executed by the root user on a DGX system.",
+        "input": "How do I view the history of all commands executed by the root user on my DGX system?",
+        "output": "Switch to the root user with 'su' or 'sudo -i', then type '# history' to view the command history."
+    },
+    {
+        "instruction": "Provide the command to display the most frequently used commands on a DGX system.",
+        "input": "What command can I use to display the most frequently used commands on my DGX?",
+        "output": "history | awk '{print $2}' | sort | uniq -c | sort -nr | head -10"
+    },
+    {
+        "instruction": "Explain how to manually reset a user's password and force them to change it on next login on a DGX system.",
+        "input": "How do I manually reset a user's password and force them to change it on next login on my DGX system?",
+        "output": "Use the command '# passwd username' to change the user's password, then use '# chage -d 0 username' to force a password change on next login."
+    }, {
+        "instruction": "Provide the command to see the version of the operating system installed on a DGX system.",
+        "input": "How can I see the version of the operating system installed on my DGX system?",
+        "output": "lsb_release -a"
+    },
+    {
+        "instruction": "Describe how to create a snapshot of the entire system state on a DGX system for backup purposes.",
+        "input": "What steps should I take to create a snapshot of the entire system state on my DGX system for backup purposes?",
+        "output": "Use the 'rsnapshot' tool. Install it with '# apt-get install rsnapshot', configure it by editing '/etc/rsnapshot.conf', and run it with '# rsnapshot daily' to create a snapshot."
+    },
+    {
+        "instruction": "Show how to recover files from a damaged hard drive on a DGX system.",
+        "input": "How can I recover files from a damaged hard drive on my DGX system?",
+        "output": "Use the 'testdisk' tool. Install it with '# apt install testdisk', run '# testdisk' to analyze the disk, and follow the on-screen instructions to recover files."
+    },
+    {
+        "instruction": "List the command to view real-time system logs on a DGX system.",
+        "input": "What command should I use to view real-time system logs on my DGX?",
+        "output": "journalctl -f"
+    },
+    {
+        "instruction": "Provide the command to disable a specific system service from starting at boot on a DGX system.",
+        "input": "How do I disable a specific system service from starting at boot on my DGX system?",
+        "output": "systemctl disable servicename"
+    },
+    {
+        "instruction": "Explain how to configure a proxy server for HTTP and HTTPS traffic on a DGX system.",
+        "input": "What steps should I take to configure a proxy server for HTTP and HTTPS traffic on my DGX system?",
+        "output": "Edit '/etc/environment' and add 'http_proxy=http://proxy_server:port/' and 'https_proxy=https://proxy_server:port/'. You may also need to configure specific applications to use these proxy settings."
+    },
+    {
+        "instruction": "Show how to block all outgoing traffic except for HTTP and HTTPS on a DGX system.",
+        "input": "How can I block all outgoing traffic except for HTTP and HTTPS on my DGX system?",
+        "output": "Use iptables to set default policies and specifically allow HTTP and HTTPS: '# iptables -P OUTPUT DROP' and '# iptables -A OUTPUT -p tcp --dport 80 -j ACCEPT' and '# iptables -A OUTPUT -p tcp --dport 443 -j ACCEPT'."
+    },
+    {
+        "instruction": "Describe how to manually install a graphics card driver on a DGX system.",
+        "input": "How do I manually install a graphics card driver on my DGX system?",
+        "output": "Download the driver from the NVIDIA website, make the downloaded file executable with 'chmod +x NVIDIA-Linux-x86_64-xxxx.run', and run it with './NVIDIA-Linux-x86_64-xxxx.run'. Follow the on-screen instructions to install."
+    },
+    {
+        "instruction": "Provide the command to change the ownership of all files in a directory recursively on a DGX system.",
+        "input": "What command can I use to change the ownership of all files in a directory recursively on my DGX?",
+        "output": "chown -R username:groupname /path/to/directory"
+    },
+    {
+        "instruction": "Explain how to enable and test SMTP email sending from a DGX system.",
+        "input": "How do I enable and test SMTP email sending from my DGX system?",
+        "output": "Configure '/etc/ssmtp/ssmtp.conf' with your SMTP server details, then send a test email using the 'ssmtp' command: 'echo \"Subject: Test Email\" | ssmtp recipient@example.com'."
+    },    {
+        "instruction": "Provide the command to list all hardware connected to the PCI bus on a DGX system.",
+        "input": "How can I list all hardware connected to the PCI bus on my DGX system?",
+        "output": "lspci"
+    },
+    {
+        "instruction": "Describe how to limit the amount of CPU that a specific process can use on a DGX system.",
+        "input": "What steps should I take to limit the amount of CPU that a specific process can use on my DGX system?",
+        "output": "Use 'cpulimit' by identifying the process ID (PID) with 'pidof process_name' and applying the limit with '# cpulimit -p [PID] -l [percentage]'."
+    },
+    {
+        "instruction": "Show how to find the total number of files in a directory on a DGX system.",
+        "input": "How can I find the total number of files in a directory on my DGX system?",
+        "output": "find /path/to/directory -type f | wc -l"
+    },
+    {
+        "instruction": "List the command to view the kernel ring buffer messages on a DGX system.",
+        "input": "What command should I use to view the kernel ring buffer messages on my DGX?",
+        "output": "dmesg"
+    },
+    {
+        "instruction": "Provide the command to restart the NTP service on a DGX system.",
+        "input": "How do I restart the NTP service on my DGX system?",
+        "output": "systemctl restart ntp"
+    },
+    {
+        "instruction": "Explain how to permanently set the maximum size of core files on a DGX system.",
+        "input": "What steps should I take to permanently set the maximum size of core files on my DGX system?",
+        "output": "Edit '/etc/security/limits.conf' and add 'username soft core [size]' and 'username hard core [size]' where '[size]' is the maximum file size in kilobytes. For unlimited size, use 'unlimited'."
+    },
+    {
+        "instruction": "Show how to create a bootable USB drive from an ISO file on a DGX system.",
+        "input": "How can I create a bootable USB drive from an ISO file on my DGX system?",
+        "output": "dd if=/path/to/iso of=/dev/sdx bs=4M status=progress oflag=sync"
+    },
+    {
+        "instruction": "Describe how to check the mail queue on a DGX system.",
+        "input": "How do I check the mail queue on my DGX system?",
+        "output": "mailq"
+    },
+    {
+        "instruction": "Provide the command to see the amount of free and used memory in the system on a DGX system.",
+        "input": "What command can I use to see the amount of free and used memory in the system on my DGX?",
+        "output": "free -h"
+    },
+    {
+        "instruction": "Explain how to add a new DNS server to the network configuration on a DGX system.",
+        "input": "How do I add a new DNS server to the network configuration on my DGX system?",
+        "output": "Edit '/etc/resolv.conf' and add 'nameserver [new DNS IP address]' to the file."
+    }
+]
+
+
+
+
+
+
+
+
+
+
