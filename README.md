@@ -2,7 +2,7 @@
 
 ## Repository Description
 
-This repository will contain supplementary material used in my Ray's Bernard finetune journal site. It will consist of Jupyter notebooks, Python code, and any diagrams created during the process.
+This repository will contain supplementary material used in my Ray's Bernard fine tuned journal site. https://raymondbernard.github.io It will consist of Jupyter notebooks, Python code, and any diagrams created during the process.
 
 ## Contributions
 
@@ -38,7 +38,7 @@ The repository will include the following:
 You can clone this repository to your local machine using the following command:
 
 ```
-git clone https://github.com/your-username/repository-name.git
+git clone https://github.com/raymondbernard/fine-tune-journal.git
 ```
 
 Once cloned, you can navigate to the repository directory and explore the contents.
